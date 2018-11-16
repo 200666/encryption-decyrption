@@ -1,7 +1,98 @@
-#BlueJ class context
-comment0.target=cipher
-comment1.params=userInput1\ keyShift
-comment1.target=java.lang.String\ encrption(java.lang.String,\ int)
-comment2.params=userInput1\ keyShift
-comment2.target=java.lang.String\ decryption(java.lang.String,\ int)
-numComments=3
+package EncrptionDecryption;
+
+public class cipher
+{
+    public String encrption(String userInput1, int keyShift){
+            //VARIABLES:
+            String finalString = "";
+            int Zero = 32+keyShift; //value for space in ASCII and the keyshift
+            //MAIN PROGRAM:
+            // loop statement, goes through every char in string
+            for(int i=0; i<userInput1.length();i++){ 
+                //adjust ASCII value of orginal char by keyshift
+                int asciiValue = (int)(userInput1.charAt(i));
+                int newValue = (int)(asciiValue + keyShift);
+                System.out.println(newValue);
+               //conditional statements 
+               if (newValue > 122 && newValue >97||newValue > 64 && newValue >90 && newValue<97){ 
+                   //ascii code for Z = 90, A=64, z=122, a=97
+                   //finds newValue terms that go beyond the limits of the alphabet in ASCII
+                    newValue -= 26; // assigns the new value from the start
+                    finalString += (char)(newValue);
+                } else if (newValue > 57 && newValue <64 ){ 
+                   //ascii code for 9 = 57, 0=48
+                   //uses bounds of anything above 9 and below when the alphabet starts
+                   //finds newValue terms that go beyond the limits of the numbers 0-9 in ASCII
+                   newValue -= 10; //assigns new value from start of code
+                   finalString += (char)(newValue);
+                }
+                else if(newValue == Zero){
+                    /* compare new value to value of space in ascii + the keyshift  value*/
+                    finalString+=" ";
+                }
+                else{ //when new value fits within bounds of alphabet and numbers
+                    finalString += (char)(newValue);
+                    /* adds the char equivalent to the ascii value to theoutput string*/
+                }
+        }
+            return finalString; //output of program
+    }
+    public String decryption(String userInput1, int keyShift){
+            //VARIABLES:
+            //creation of different variables used through the main program
+            String finalString = "";
+            int Zero = 32+keyShift;
+            char ch; 
+            String decryptedMessage = "";
+            //MAIN PROGRAM
+            // for loop, goes through entire string
+                for(int i = 0; i < userInput1.length(); ++i){
+                    ch = userInput1.charAt(i);
+                    
+                    if(ch >= 'a' && ch <= 'z'){ //instead of using ASCII value, this part just uses char
+                        ch = (char)(ch - keyShift);
+                        
+                        if(ch < 'a'){
+                            ch = (char)(ch + 'z' - 'a' + 1); //out of bounds
+                        }
+                        
+                        decryptedMessage += ch;
+                    }
+                    else if(ch >= 'A' && ch <= 'Z'){
+                        ch = (char)(ch - keyShift);
+                        
+                        if(ch < 'A'){
+                            ch = (char)(ch + 'Z' - 'A' + 1);
+                        }
+                        
+                        decryptedMessage += ch;
+                    } else if(ch >='0'&& ch<='9' ){
+                        ch = (char)(ch - keyShift);
+                        
+                        if(ch < '0'){
+                            ch = (char)(ch + '9' - '0' + 1); //out of bounds
+                        }
+                        
+                        decryptedMessage += ch;
+                    }
+                    else {
+                        decryptedMessage += ch;
+                    }
+               
+        }
+            
+                return decryptedMessage;
+        }
+            
+            
+        
+    }
+
+     //for(char n = 0; n<=userInput1.length();n++){
+                //int nextInt = oneChar+5;
+                //finalString+= nextInt;
+                //for(char m=0; m<=userInput1.length();m++){
+                    //finalString +=(char)(i);
+                //}
+            //}
+

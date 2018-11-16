@@ -1,5 +1,42 @@
-#BlueJ class context
-comment0.target=readUserInput
-comment1.params=args
-comment1.target=void\ main(java.lang.String[])
-numComments=2
+package EncrptionDecryption;
+import java.util.Scanner;
+public class readUserInput
+{
+    public static void main (String[] args){
+       Scanner sc = new Scanner(System.in); // begins use of scanner 
+       boolean i = true;
+            while(i = true){
+       System.out.println("start? Y or N");
+       char startAgainChoice = sc.next().charAt(0);
+       if (startAgainChoice == 'Y' ||startAgainChoice == 'y'){
+           i = true; //assigns boolean true value to i, starts loop again
+        }else if (startAgainChoice == 'N'||startAgainChoice == 'n'){
+            i = false;//assigns boolean false value to i, stops loop
+            break;
+        } else{
+          System.out.println("sorry, invalid input");  
+          break;
+        }
+        System.out.println("enter text");
+        String userInput1 = sc.next(); //using scanner class to assign user value to var
+        System.out.println("Enter key shift amount:");
+        int keyShift = sc.nextInt(); //the amount characters change
+        //System.out.println("enter either password or NA");//used for drcyption process
+        //String password = sc.next();
+        System.out.println("Enter E for encryption and D for decryption");
+        char userChoice = sc.next().charAt(0);
+            if (userChoice == 'E'||userChoice == 'e'){
+            cipher cc = new cipher();
+            System.out.println("Encrypted string:"+ cc.encrption(userInput1, keyShift));
+        } else if(userChoice == 'D'||userChoice == 'd'){
+           //System.out.println("input password? enter P");//used for drcyption process
+           //char userChoice2 = sc.next().charAt(0);
+           cipher cc = new cipher();
+           System.out.println("Decrypted string:"+ cc.decryption(userInput1, keyShift)); 
+                
+        }else{
+            System.out.println("sorry, invalid input");
+        }
+    }
+}
+}
