@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=cipher
+comment1.params=userInput1\ keyShift
+comment1.target=java.lang.String\ encrption(java.lang.String,\ int)
+comment2.params=userInput1\ keyShift
+comment2.target=java.lang.String\ decryption(java.lang.String,\ int)
+numComments=3
